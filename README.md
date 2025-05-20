@@ -41,9 +41,9 @@ The models are implemented and trained in PyTorch, with training and evaluation 
   Contains predicted outputs from the attention-based model on the test set.  
   Enables qualitative comparison with the vanilla model.
 
-## Interactive_plot_code
+### Interactive_plot_code
 This folder contains .ipynb and .txt files
-### Files
+#### Files
 
 - **`Interactive_visualization_code.ipynb`**  
   A Jupyter Notebook that:
@@ -77,9 +77,9 @@ line in the code Interactive_visualization_code.ipynb and run it
   Evaluation notebooks load trained models and generate predictions on test sets, reporting accuracy and error metrics.
 ## How to Use This Repository
 
-1. Open the Colab notebook of the model to train (`Vanilla_latin_to_telugu.ipynb` or `Attention_latin_to_telugu.ipynb`).  
+1. Download the .ipynb train files of the model to train (`Vanilla_latin_to_telugu.ipynb` or `Attention_latin_to_telugu.ipynb`). Train them on jupyter notebook or colab notebook  
 2. Run the notebook to train the model with your configuration.  
-3. After training, open the corresponding test notebook (`Vanilla_test.ipynb` or `Attention_test.ipynb`).  
+3. After training, open the corresponding test notebook (`Vanilla_test.ipynb` or `Attention_test.ipynb`), run them on either jupyter notebook or colab notebook  
 4. Run evaluation cells to generate predictions and view metrics.  
 5. Compare the prediction files (`prediction vanilla` vs `predictions attention`) for qualitative results.
 
