@@ -1,0 +1,78 @@
+"""
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #canvas {{ position: relative; border: 1px solid #ccc; }}
+        #tooltip {{
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-family: 'Noto Sans Telugu', Arial, sans-serif;
+            font-size: 14px;
+            pointer-events: none;
+            display: none;
+            z-index: 1000;
+            white-space: nowrap;
+        }}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="canvas" width="{image_width}" height="{image_height}"></canvas>
+    <div id="tooltip"></div>
+    <script>
+        (function() {{
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            img.src = 'data:image/png;base64,{image_base64}';
+            img.onload = function() {{
+                ctx.drawImage(img, 0, 0);
+            }};
+
+            const regions = {json.dumps(char_positions)};
+            const tooltip = document.getElementById('tooltip');
+
+            function escapeHtml(text) {{
+                if (!text) return '';
+                return text.replace(/[&<>"']/g, function(m) {{
+                    return {{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[m];
+                }});
+            }}
+
+            canvas.addEventListener('mousemove', function(e) {{
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                let found = false;
+                for (let region of regions) {{
+                    if (x >= region.x_min && x <= region.x_max &&
+                        y >= region.y_min && y <= region.y_max) {{
+                            tooltip.style.display = 'block';
+                            tooltip.style.left = (e.clientX + 10) + 'px';
+                            tooltip.style.top = (e.clientY + 10) + 'px';
+
+                            const maxAtt = region.max_attention ? escapeHtml(region.max_attention) : '(none)';
+                            tooltip.innerHTML = 'Telugu Character: ' + escapeHtml(region.char) + '<br>Max Attention Char: ' + maxAtt;
+                            found = true;
+                            break;
+                    }}
+                }}
+
+                if (!found) {{
+                    tooltip.style.display = 'none';
+                }}
+            }});
+
+            canvas.addEventListener('mouseout', function() {{
+                tooltip.style.display = 'none';
+            }});
+        }})();
+    </script>
+</body>
+</html>
+"""
