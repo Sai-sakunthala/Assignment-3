@@ -41,6 +41,24 @@ The models are implemented and trained in PyTorch, with training and evaluation 
   Contains predicted outputs from the attention-based model on the test set.  
   Enables qualitative comparison with the vanilla model.
 
+## Interactive_plot_code
+This folder contains .ipynb and .txt files
+### Files
+
+- **`Interactive_visualization_code.ipynb`**  
+  A Jupyter Notebook that:
+  - Loads attention-related or positional data.
+  - Renders a visualization
+
+- **`interactivehtml.txt`**  
+  A plain text file containing the full HTML + JavaScript code for the interactive plot.  
+  **To use it:**
+copy the content of .txt file and paste it after
+
+html_content = f
+
+line in the code Interactive_visualization_code.ipynb and run it
+
 ## Additional Details
 
 - **Data:**  
